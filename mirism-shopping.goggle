@@ -1,12 +1,15 @@
-! name: Mirism — Shopping PDP Bias (v0.3)
-! description: Bias Brave toward retailer PDPs and official product pages; suppress social, marketplaces, and low-intent search/category pages.
+! name: Mirism — Shopping PDP Bias (v0.4)
+! description: Strict retail PDP bias. Discard Google generic search + Amazon (all), discard resale/marketplaces, discard social/coupons.
 ! author: Mirism
 ! homepage: https://www.mirism.com
-! public: false
+! public: true
 
-# -------------------------
-# Social / UGC / forums / video (discard)
-# -------------------------
+———————––
+
+1) Discard: social / UGC / forums / video
+
+———————––
+
 $discard,site=pinterest.com
 $discard,site=facebook.com
 $discard,site=instagram.com
@@ -20,9 +23,12 @@ $discard,site=tumblr.com
 $discard,site=youtube.com
 $discard,site=youtu.be
 
-# -------------------------
-# Coupons / deals (discard)
-# -------------------------
+———————––
+
+2) Discard: coupons / deals / cashback clutter
+
+———————––
+
 $discard,site=rakuten.com
 $discard,site=honey.io
 $discard,site=joinhoney.com
@@ -31,9 +37,12 @@ $discard,site=retailmenot.com
 $discard,site=slickdeals.net
 $discard,site=groupon.com
 
-# -------------------------
-# Marketplaces / resale / auctions (discard)
-# -------------------------
+———————––
+
+3) Discard: resale / marketplaces / auction (never preferred; remove entirely)
+
+———————––
+
 $discard,site=etsy.com
 $discard,site=ebay.com
 $discard,site=poshmark.com
@@ -45,9 +54,12 @@ $discard,site=therealreal.com
 $discard,site=thredup.com
 $discard,site=offerup.com
 
-# -------------------------
-# Generic search engines (discard)
-# -------------------------
+———————––
+
+4) Discard: generic search engines (Google treated as junk)
+
+———————––
+
 /search/$discard,site=google.com
 /imgres/$discard,site=google.com
 /shopping/$discard,site=google.com
@@ -55,20 +67,38 @@ $discard,site=bing.com
 $discard,site=duckduckgo.com
 $discard,site=yahoo.com
 
-# -------------------------
-# Broad marketplace query/category pages (discard by path)
-# (keeps real PDPs possible on these sites, but kills the worst buckets)
-# -------------------------
-/s/$discard,site=amazon.com
-/gp/search/$discard,site=amazon.com
-/b/$discard,site=amazon.com
-/gp/browse/$discard,site=amazon.com
-/search/$discard,site=walmart.com
-/s/$discard,site=target.com
+———————––
 
-# -------------------------
-# Boost: trusted retailers / strong PDP coverage
-# -------------------------
+5) Discard: Amazon (treat same as Google: never primary)
+
+———————––
+
+$discard,site=amazon.com
+$discard,site=amzn.to
+$discard,site=a.co
+
+Optional: also discard Amazon’s many alternates (only if they show up)
+
+$discard,site=amazon.ca
+$discard,site=amazon.co.uk
+$discard,site=amazon.de
+
+———————––
+
+6) Optional discard: fast-fashion you never want Preferred (remove entirely here)
+
+If you still want them in Budget, remove these discards and enforce “never preferred” in tiering instead.
+
+———————––
+
+$discard,site=shein.com
+
+———————––
+
+7) Boost: trusted retailers / PDP-heavy domains
+
+———————––
+
 $boost=3,site=nordstrom.com
 $boost=3,site=ssense.com
 $boost=3,site=net-a-porter.com
