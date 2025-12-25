@@ -1,0 +1,92 @@
+! name: Mirism — Shopping PDP Bias (v0.3)
+! description: Bias Brave toward retailer PDPs and official product pages; suppress social, marketplaces, and low-intent search/category pages.
+! author: Mirism
+! homepage: https://www.mirism.com
+! public: false
+
+# -------------------------
+# Social / UGC / forums / video (discard)
+# -------------------------
+$discard,site=pinterest.com
+$discard,site=facebook.com
+$discard,site=instagram.com
+$discard,site=tiktok.com
+$discard,site=reddit.com
+$discard,site=twitter.com
+$discard,site=x.com
+$discard,site=medium.com
+$discard,site=blogspot.com
+$discard,site=tumblr.com
+$discard,site=youtube.com
+$discard,site=youtu.be
+
+# -------------------------
+# Coupons / deals (discard)
+# -------------------------
+$discard,site=rakuten.com
+$discard,site=honey.io
+$discard,site=joinhoney.com
+$discard,site=capitaloneshopping.com
+$discard,site=retailmenot.com
+$discard,site=slickdeals.net
+$discard,site=groupon.com
+
+# -------------------------
+# Marketplaces / resale / auctions (discard)
+# -------------------------
+$discard,site=etsy.com
+$discard,site=ebay.com
+$discard,site=poshmark.com
+$discard,site=depop.com
+$discard,site=mercari.com
+$discard,site=grailed.com
+$discard,site=vestiairecollective.com
+$discard,site=therealreal.com
+$discard,site=thredup.com
+$discard,site=offerup.com
+
+# -------------------------
+# Generic search engines (discard)
+# -------------------------
+/search/$discard,site=google.com
+/imgres/$discard,site=google.com
+/shopping/$discard,site=google.com
+$discard,site=bing.com
+$discard,site=duckduckgo.com
+$discard,site=yahoo.com
+
+# -------------------------
+# Broad marketplace query/category pages (discard by path)
+# (keeps real PDPs possible on these sites, but kills the worst buckets)
+# -------------------------
+/s/$discard,site=amazon.com
+/gp/search/$discard,site=amazon.com
+/b/$discard,site=amazon.com
+/gp/browse/$discard,site=amazon.com
+/search/$discard,site=walmart.com
+/s/$discard,site=target.com
+
+# -------------------------
+# Boost: trusted retailers / strong PDP coverage
+# -------------------------
+$boost=3,site=nordstrom.com
+$boost=3,site=ssense.com
+$boost=3,site=net-a-porter.com
+$boost=3,site=mrporter.com
+$boost=3,site=revolve.com
+$boost=2,site=shopbop.com
+$boost=2,site=farfetch.com
+$boost=2,site=matchesfashion.com
+$boost=2,site=everlane.com
+$boost=2,site=cos.com
+$boost=2,site=arket.com
+$boost=2,site=uniqlo.com
+$boost=2,site=zara.com
+$boost=2,site=aritzia.com
+$boost=2,site=anthropologie.com
+$boost=2,site=madewell.com
+$boost=2,site=jcrew.com
+$boost=2,site=factory.jcrew.com
+$boost=2,site=saksfifthavenue.com
+$boost=2,site=coach.com
+$boost=2,site=bloomingdales.com
